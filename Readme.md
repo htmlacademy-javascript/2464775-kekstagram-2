@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Елена Салак](https://up.htmlacademy.ru/javascript-individual/2/user/2464775).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Данюшин](https://htmlacademy.ru/profile/id225742).
 
 ---
 
