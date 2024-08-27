@@ -20,7 +20,6 @@ const nameSet = [
 ];
 
 const photoCount = 25;
-let id = 1;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -29,27 +28,39 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const quantityComments = getRandomInteger(0, 30);
-
 const createComment = () => {
-  id++;
+  let id = 1;
   const indexMessage = getRandomInteger(0, messageSet.length - 1);
   const indexName = getRandomInteger(0, nameSet.length - 1);
-  const idAvatar = getRandomInteger(1, 6);
-  return {
-    id: id,
-    avatar: `img/avatar-${idAvatar}.svg`,
-    message: `${messageSet[indexMessage]}`,
-    name: `${nameSet[indexName]}`,
+
+  return function () {
+    const comment = {};
+    const idAvatar = getRandomInteger (1, 6);
+    comment.id = id;
+    comment.avatar = `img/avatar-${idAvatar}.svg`;
+    comment.message = `${messageSet[indexMessage]}`;
+    comment.name = `${nameSet[indexName]}`;
+    id++;
+    return comment;
   };
 };
 
-const describePhoto = () => ({
-  id,
-  url: `photos/{${id}}.jpg`,
-  description: `Крутое фото №${id}`,
-  likes: getRandomInteger(15, 200),
-  comments: Array.from({length: quantityComments}, createComment),
-});
+const describePhoto = () => {
+  let id = 1;
 
-const descriptionPhoto = Array.from({length: photoCount}, describePhoto);
+  return function () {
+    const photo = {};
+    const quantityComments = getRandomInteger(0, 30);
+    const quantityLikes = getRandomInteger(15, 200);
+
+    photo.id = id;
+    photo.url = `photos/{${id}}.jpg`;
+    photo.description = `Крутое фото №${id}`;
+    photo.likes = quantityLikes;
+    photo.comments = Array.from({length: quantityComments}, createComment());
+    id++;
+    return photo;
+  };
+};
+
+Array.from({length: photoCount}, describePhoto());
