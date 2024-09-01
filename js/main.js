@@ -61,10 +61,11 @@ const createComment = () => {
 
 const describePhoto = () => {
   let id = 1;
+  const valuesGenerator = createRandomIdFromRangeGenerator();
   return function () {
     const photo = {};
-    const idPhotoUrl = createRandomIdFromRangeGenerator(1, 25);
-    const idPhotoDescription = createRandomIdFromRangeGenerator(1, 25);
+    const idPhotoUrl = valuesGenerator(1, 25);
+    const idPhotoDescription = valuesGenerator(1, 25);
     const quantityComments = getRandomInteger(0, 30);
     const quantityLikes = getRandomInteger(15, 200);
     photo.id = id;
