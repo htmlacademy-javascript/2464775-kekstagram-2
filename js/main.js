@@ -32,9 +32,6 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
   return function () {
     let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomInteger(min, max);
     }
@@ -59,23 +56,21 @@ const createComment = () => {
   };
 };
 
+const valuesGenerator = createRandomIdFromRangeGenerator(1, 999);
+
 const describePhoto = () => {
-  let id = 1;
-  const valuesGenerator = createRandomIdFromRangeGenerator();
-  return function () {
-    const photo = {};
-    const idPhotoUrl = valuesGenerator(1, 25);
-    const idPhotoDescription = valuesGenerator(1, 25);
-    const quantityComments = getRandomInteger(0, 30);
-    const quantityLikes = getRandomInteger(15, 200);
-    photo.id = id;
-    photo.url = `photos/{${idPhotoUrl}}.jpg`;
-    photo.description = `Крутое фото №${idPhotoDescription}`;
-    photo.likes = quantityLikes;
-    photo.comments = Array.from({length: quantityComments}, createComment());
-    id++;
-    return photo;
-  };
+  const id = valuesGenerator();
+  const photo = {};
+  const idPhotoUrl = valuesGenerator(1, 25);
+  const idPhotoDescription = valuesGenerator(1, 25);
+  const quantityComments = getRandomInteger(0, 30);
+  const quantityLikes = getRandomInteger(15, 200);
+  photo.id = id;
+  photo.url = `photos/{${idPhotoUrl}}.jpg`;
+  photo.description = `Крутое фото №${idPhotoDescription}`;
+  photo.likes = quantityLikes;
+  photo.comments = Array.from({length: quantityComments}, createComment());
+  return photo;
 };
 
-Array.from({length: photoCount}, describePhoto());
+Array.from({length: photoCount}, describePhoto);
