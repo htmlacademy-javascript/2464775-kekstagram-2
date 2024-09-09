@@ -30,6 +30,7 @@ const getRandomInteger = (min, max) => {
 
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
+
   return function () {
     let currentValue = getRandomInteger(min, max);
     while (previousValues.includes(currentValue)) {
@@ -40,13 +41,16 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   };
 };
 
+const valuesGenerator = createRandomIdFromRangeGenerator(1, 999);
+
 const createComment = () => {
   let id = 1;
-  const indexMessage = getRandomInteger(0, messageSet.length - 1);
-  const indexName = getRandomInteger(0, nameSet.length - 1);
+
   return function () {
     const comment = {};
     const idAvatar = getRandomInteger (1, 6);
+    const indexMessage = getRandomInteger(0, messageSet.length - 1);
+    const indexName = getRandomInteger(0, nameSet.length - 1);
     comment.id = id;
     comment.avatar = `img/avatar-${idAvatar}.svg`;
     comment.message = `${messageSet[indexMessage]}`;
@@ -56,18 +60,14 @@ const createComment = () => {
   };
 };
 
-const valuesGenerator = createRandomIdFromRangeGenerator(1, 999);
-
 const describePhoto = () => {
-  const id = valuesGenerator();
+  const id = valuesGenerator (1, 25);
   const photo = {};
-  const idPhotoUrl = valuesGenerator(1, 25);
-  const idPhotoDescription = valuesGenerator(1, 25);
   const quantityComments = getRandomInteger(0, 30);
   const quantityLikes = getRandomInteger(15, 200);
   photo.id = id;
-  photo.url = `photos/{${idPhotoUrl}}.jpg`;
-  photo.description = `Крутое фото №${idPhotoDescription}`;
+  photo.url = `photos/${id}.jpg`;
+  photo.description = `Крутое фото №${id}`;
   photo.likes = quantityLikes;
   photo.comments = Array.from({length: quantityComments}, createComment());
   return photo;
