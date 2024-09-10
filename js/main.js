@@ -44,20 +44,16 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 const valuesGenerator = createRandomIdFromRangeGenerator(1, 999);
 
 const createComment = () => {
-  let id = 1;
-
-  return function () {
-    const comment = {};
-    const idAvatar = getRandomInteger (1, 6);
-    const indexMessage = getRandomInteger(0, messageSet.length - 1);
-    const indexName = getRandomInteger(0, nameSet.length - 1);
-    comment.id = id;
-    comment.avatar = `img/avatar-${idAvatar}.svg`;
-    comment.message = `${messageSet[indexMessage]}`;
-    comment.name = `${nameSet[indexName]}`;
-    id++;
-    return comment;
-  };
+  const id = valuesGenerator(1, 999);
+  const comment = {};
+  const idAvatar = getRandomInteger (1, 6);
+  const indexMessage = getRandomInteger(0, messageSet.length - 1);
+  const indexName = getRandomInteger(0, nameSet.length - 1);
+  comment.id = id;
+  comment.avatar = `img/avatar-${idAvatar}.svg`;
+  comment.message = `${messageSet[indexMessage]}`;
+  comment.name = `${nameSet[indexName]}`;
+  return comment;
 };
 
 const describePhoto = () => {
@@ -69,7 +65,7 @@ const describePhoto = () => {
   photo.url = `photos/${id}.jpg`;
   photo.description = `Крутое фото №${id}`;
   photo.likes = quantityLikes;
-  photo.comments = Array.from({length: quantityComments}, createComment());
+  photo.comments = Array.from({length: quantityComments}, createComment);
   return photo;
 };
 
