@@ -56,7 +56,7 @@ const createComment = () => {
   return comment;
 };
 
-const createIdFromRangeGenerator = (min, max) => {
+const createIdFromRangeGenerator = () => {
   let id = 0;
 
   return function () {
