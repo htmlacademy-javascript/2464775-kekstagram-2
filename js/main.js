@@ -44,7 +44,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 const valuesGenerator = createRandomIdFromRangeGenerator(1, 999);
 
 const createComment = () => {
-  const id = valuesGenerator(1, 999);
+  const id = valuesGenerator();
   const comment = {};
   const idAvatar = getRandomInteger (1, 6);
   const indexMessage = getRandomInteger(0, messageSet.length - 1);
@@ -56,8 +56,19 @@ const createComment = () => {
   return comment;
 };
 
+const createIdFromRangeGenerator = (min, max) => {
+  let id = 0;
+
+  return function () {
+    id++;
+    return id;
+  };
+};
+
+const idPhoto = createIdFromRangeGenerator(1, 25);
+
 const describePhoto = () => {
-  const id = valuesGenerator (1, 25);
+  const id = idPhoto();
   const photo = {};
   const quantityComments = getRandomInteger(0, 30);
   const quantityLikes = getRandomInteger(15, 200);
@@ -69,4 +80,5 @@ const describePhoto = () => {
   return photo;
 };
 
-Array.from({length: photoCount}, describePhoto);
+const resultTest = Array.from({length: photoCount}, describePhoto);
+console.log(resultTest);
