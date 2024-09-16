@@ -1,7 +1,6 @@
 import { getRandomInteger, createRandomIdFromRangeGenerator, createIdFromRangeGenerator } from './utils.js';
 import { messageSet, nameSet } from './data.js';
-
-const PHOTOCOUNT = 25;
+import { PHOTOCOUNT } from './const.js';
 
 const valuesGenerator = createRandomIdFromRangeGenerator(1, 999);
 
