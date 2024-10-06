@@ -1,4 +1,3 @@
 import './createArray.js';
-import { postsData } from './createArray.js';
-
-postsData();
+import { postsDataArray } from './createArray.js';
+import './thumbnails.js';

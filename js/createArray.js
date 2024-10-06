@@ -34,4 +34,6 @@ const describePhoto = () => {
 
 const postsData = () => Array.from({length: PHOTOCOUNT}, describePhoto);
 
-export { postsData };
+const postsDataArray = postsData();
+
+export { postsDataArray };
