@@ -1,3 +1,4 @@
-import './createArray.js';
-import { postsDataArray } from './createArray.js';
+// import './createArray.js';
 import './thumbnails.js';
+import { openBigPicture } from './render-photo.js';
+
