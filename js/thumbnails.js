@@ -24,4 +24,6 @@ postsDataArray.forEach((photo) => {
 });
 
 const result = container.appendChild(fragment);
-console.log(result);
+// console.log(result);
+
+export { result };

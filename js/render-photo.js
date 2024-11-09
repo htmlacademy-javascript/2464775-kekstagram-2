@@ -1,4 +1,5 @@
 import { postsDataArray } from './createArray.js';
+import { result } from './thumbnails.js';
 
 const bigPictureNode = document.querySelector('.big-picture');
 const bigPictureImgNode = bigPictureNode.querySelector('.big-picture__img').querySelector('img');
@@ -55,4 +56,11 @@ const openBigPicture = (pictureId) => {
   document.addEventListener('keydown', onEscKeydown);
 };
 
-export { openBigPicture };
+result.addEventListener('click', (evt) => {
+  const currentContainer = evt.target.closest('.pictures');
+
+  if (currentContainer) {
+    evt.preventDefault();
+    openBigPicture(currentContainer.dataset.pictureId);
+  }
+});
