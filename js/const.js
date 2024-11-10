@@ -1,3 +1,4 @@
 const PHOTOCOUNT = 25;
+const COUNT_STEP = 5;
 
-export { PHOTOCOUNT };
+export { PHOTOCOUNT, COUNT_STEP };
