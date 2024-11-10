@@ -2,7 +2,7 @@ import { postsDataArray } from './createArray.js';
 import { container } from './thumbnails.js';
 
 const bigPictureNode = document.querySelector('.big-picture');
-const bigPictureImgNode = bigPictureNode.querySelector('.big-picture__img').querySelector('img');
+const bigPictureImgNode = bigPictureNode.querySelector('.big-picture__img img');
 const likesCountNode = bigPictureNode.querySelector('.likes-count');
 const socialCommentsNode = bigPictureNode.querySelector('.social__comments');
 const socialCommentTemplate = socialCommentsNode.querySelector('.social__comment');
@@ -57,10 +57,10 @@ const openBigPicture = (pictureId) => {
 };
 
 container.addEventListener('click', (evt) => {
-  const currentContainer = evt.target.closest('.pictures');
+  const currentContainer = evt.target.closest('.picture');
 
   if (currentContainer) {
     evt.preventDefault();
-    openBigPicture(currentContainer.dataset.pictureId);
+    openBigPicture(currentContainer.dataset.id);
   }
 });
