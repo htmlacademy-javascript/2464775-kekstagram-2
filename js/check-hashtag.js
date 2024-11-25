@@ -26,7 +26,7 @@ const isHasgtagsValid = (value) => {
     },
     {
       check: inputArray.some((item) => item[0] !== '#'),
-      error: 'Хэштег начинается с символа # (решётка)',
+      error: 'Хэштег должен начинаться с символа # (решётка)',
     },
     {
       check: inputArray.some((item, num, array) => array.includes(item, num + 1)),
