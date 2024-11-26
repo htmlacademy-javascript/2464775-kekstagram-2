@@ -4,20 +4,16 @@ let errorMessage = '';
 
 const error = () => errorMessage;
 
-const isHasgtagsValid = (value) => {
+const validateHashtags = (value) => {
   errorMessage = '';
 
   const inputText = value.toLowerCase().trim();
-
-  if(!inputText) {
-    return true;
-  }
 
   const inputArray = inputText.split(/\s+/);
 
   const rules = [
     {
-      check: inputArray.some((item) => item === '#'),
+      check: inputArray.some((item) => item[0] === '#'),
       error: 'Хеш-тег не может состоять только из одной решётки',
     },
     {
@@ -41,10 +37,14 @@ const isHasgtagsValid = (value) => {
       error: `Нельзя указать больше ${MAX_HASHTAGS} хэштега (-ов)`,
     },
     {
-      check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1, 19}$/i.test(item)),
+      check: inputArray.some((item) => !/^#[a-zа-яё0-9]$/i.test(item)),
       error: 'Хэштег содержит недопустимые символы',
     },
   ];
+
+  if(!inputText) {
+    return true;
+  }
 
   return rules.every((rule) => {
     const isInvalid = rule.check;
@@ -55,4 +55,4 @@ const isHasgtagsValid = (value) => {
   });
 };
 
-export { error, isHasgtagsValid };
+export { error, validateHashtags };

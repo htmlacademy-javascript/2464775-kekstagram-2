@@ -1,4 +1,4 @@
-import { error, isHasgtagsValid } from './check-hashtag.js';
+import { error, validateHashtags } from './check-hashtag.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -20,7 +20,7 @@ const onImgUploadClose = () => {
 };
 
 const onEscapeKeydown = (evt) => {
-  if (evt.key === 'Escape') {
+  if (evt.key === 'Escape' || evt.key === 'Esc') {
     onImgUploadClose();
   }
 };
@@ -33,7 +33,7 @@ const onPhotoSelect = () => {
 };
 
 const onHashtagInput = () => {
-  isHasgtagsValid(hashtagInput.value);
+  validateHashtags(hashtagInput.value);
 };
 
 const onFormSubmit = (evt) => {
@@ -45,7 +45,7 @@ const onFormSubmit = (evt) => {
   }
 };
 
-pristine.addValidator(hashtagInput, isHasgtagsValid, error, 2, false);
+pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);
 
 uploadFile.addEventListener('change', onPhotoSelect);
 
