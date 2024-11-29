@@ -1,26 +1,21 @@
-import { COMMENT_LENGTH } from './const.js';
+import { MAX_COMMENT_LENGTH } from './const.js';
 
-const validateComment = () => {
+let errorMessage = '';
+
+const errorComment = () => errorMessage;
+
+const validateComment = (value) => {
   errorMessage = '';
 
-  const inputArray;
-
-  const rules = [
-    {
-      check: inputArray.some((item) => item.lenght > MAX_SYMBOLS),
-      error: `Длина комментария не может составлять больше ${COMMENT_LENGTH} символов`,
-    },
-  ];
-
-  if(!inputText) {
+  if (value.trim().length === 0) {
     return true;
   }
 
-  return rules.every((rule) => {
-    const isInvalid = rule.check;
-    if(isInvalid) {
-      errorMessage = rule.error;
-    }
-    return !isInvalid;
-  });
+  if (value.lenght > MAX_COMMENT_LENGTH) {
+    errorMessage = `Длина комментария не может составлять больше ${MAX_COMMENT_LENGTH} символов`;
+  } else {
+    return true;
+  }
 };
+
+export { errorComment, validateComment };

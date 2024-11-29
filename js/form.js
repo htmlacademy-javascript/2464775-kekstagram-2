@@ -1,10 +1,12 @@
 import { error, validateHashtags } from './check-hashtag.js';
+import { errorComment, validateComment } from './check-comment.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const imgUploadCancel = uploadForm.querySelector('.img-upload__cancel');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
+const commentInput = uploadForm.querySelector('.text__description');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
@@ -21,7 +23,12 @@ const onImgUploadClose = () => {
 
 const onEscapeKeydown = (evt) => {
   if (evt.key === 'Escape' || evt.key === 'Esc') {
-    onImgUploadClose();
+    evt.preventDefault();
+    if (document.activeElement === hashtagInput || document.activeElement === commentInput) {
+      evt.stopPropagation();
+    } else {
+      onImgUploadClose();
+    }
   }
 };
 
@@ -46,6 +53,8 @@ const onFormSubmit = (evt) => {
 };
 
 pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);
+
+pristine.addValidator(commentInput, validateComment, errorComment, 2, false);
 
 uploadFile.addEventListener('change', onPhotoSelect);
 
