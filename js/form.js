@@ -61,3 +61,5 @@ uploadFile.addEventListener('change', onPhotoSelect);
 hashtagInput.addEventListener('input', onHashtagInput);
 
 uploadForm.addEventListener('submit', onFormSubmit);
+
+export { uploadForm };
