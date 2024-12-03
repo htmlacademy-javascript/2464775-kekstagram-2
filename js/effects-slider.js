@@ -6,11 +6,9 @@ const slider = imgUploadWrapper.querySelector('.effect-level__slider');
 const effectLevel = imgUploadWrapper.querySelector('.img-upload__effect-level');
 const effectLevelValue = imgUploadWrapper.querySelector('.effect-level__value');
 effectLevelValue.value = MAX_EFFECT_LEVEL;
-const newPicture = img.querySelector(img);
-const selectorImg = newPicture.classList;
 const effectRadioBtn = uploadForm.querySelectorAll('.effects__radio');
 
-const getUpdateSliderOptions = (effect, sliderElement) => {
+const UpdateSliderOptions = (effect, sliderElement) => {
   sliderElement.noUiSlider.updateOptions(Effects[effect]);
 };
 
@@ -31,17 +29,14 @@ const getEffectSelector = (currentInputId) => {
   return selectors[currentInputId];
 };
 
-const onEffectRadioBtnClick = (evt) => {
+const onEffectRadioBtn = (evt) => {
   const currentRadioBtn = evt.target.closest('.effects__radio');
   if (currentRadioBtn) {
     const effectBtnValue = currentRadioBtn.value;
-    newPicture.classList.replace(selectorImg, getEffectSelector(effectBtnValue));
-    getUpdateSliderOptions(effectBtnValue, slider);
+    img.classList.add(getEffectSelector(effectBtnValue));
+    UpdateSliderOptions(effectBtnValue, slider);
   }
 };
-
-onEffectRadioBtnClick();
-
 
 noUiSlider.create(slider, {
   range: {
@@ -63,10 +58,12 @@ slider.noUiSlider.on('update', () => {
     if(item.checked) {
       if (item.value !== 'none') {
         effectLevel.classList.remove('hidden');
-        newPicture.style.filter = StyleFilterByEffects[item.value](effectLevelValue.value);
+        img.style.filter = StyleFilterByEffects[item.value](effectLevelValue.value);
       } else {
         resetFilter();
       }
     }
   });
 });
+
+effectRadioBtn.addEventListener('change', onEffectRadioBtn);
