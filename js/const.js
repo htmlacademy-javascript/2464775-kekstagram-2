@@ -4,6 +4,7 @@ const MAX_HASHTAGS = 5;
 const MAX_SYMBOLS = 20;
 const MAX_COMMENT_LENGTH = 140;
 const MAX_EFFECT_LEVEL = 100;
+const SCALE_STEP = 0.25;
 
 const sliderOptionsObjectChromeSepia = {
   range: {
@@ -65,4 +66,4 @@ const StyleFilterByEffects = {
 };
 
 
-export { PHOTOCOUNT, COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects };
+export { PHOTOCOUNT, COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects, SCALE_STEP };
