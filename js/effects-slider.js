@@ -59,7 +59,19 @@ slider.noUiSlider.on('update', () => {
     if(item.checked) {
       if (item.value !== 'none') {
         effectLevel.classList.remove('hidden');
-        img.style.filter = StyleFilterByEffects[item.value](effectLevelValue.value);
+        let value;
+
+        switch(item.value) {
+          case 'phobos':
+            value = `${effectLevelValue.value}px`;
+            break;
+          case 'marvin':
+            value = `${effectLevelValue.value}%`;
+            break;
+          default:
+            value = effectLevelValue.value;
+        }
+        img.style.filter = StyleFilterByEffects[item.value](value);
       } else {
         resetFilter();
       }
