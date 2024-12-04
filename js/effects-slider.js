@@ -7,6 +7,7 @@ const effectLevel = imgUploadWrapper.querySelector('.img-upload__effect-level');
 const effectLevelValue = imgUploadWrapper.querySelector('.effect-level__value');
 effectLevelValue.value = MAX_EFFECT_LEVEL;
 const effectRadioBtn = uploadForm.querySelectorAll('.effects__radio');
+const effectRadioBtnList = uploadForm.querySelector('.effects__list');
 
 const UpdateSliderOptions = (effect, sliderElement) => {
   sliderElement.noUiSlider.updateOptions(Effects[effect]);
@@ -66,4 +67,4 @@ slider.noUiSlider.on('update', () => {
   });
 });
 
-effectRadioBtn.addEventListener('change', onEffectRadioBtn);
+effectRadioBtnList.addEventListener('change', onEffectRadioBtn);
