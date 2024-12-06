@@ -1,5 +1,6 @@
 import { error, validateHashtags } from './check-hashtag.js';
 import { errorComment, validateComment } from './check-comment.js';
+import { SCALE_STEP } from './const.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -7,6 +8,12 @@ const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const imgUploadCancel = uploadForm.querySelector('.img-upload__cancel');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
+const smaller = uploadForm.querySelector('.scale__control--smaller');
+const bigger = uploadForm.querySelector('.scale__control--bigger');
+const img = uploadForm.querySelector('.img-upload__preview');
+const scaleControl = uploadForm.querySelector('.scale__control--value');
+
+let scale = 1;
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
@@ -52,6 +59,22 @@ const onFormSubmit = (evt) => {
   }
 };
 
+const onSmallerClick = () => {
+  if (scale > SCALE_STEP) {
+    scale -= SCALE_STEP;
+    img.style.transform = `scale(${scale})`;
+    scaleControl.value = `${scale * 100}%`;
+  }
+};
+
+const onBiggerClick = () => {
+  if (scale < 1) {
+    scale += SCALE_STEP;
+    img.style.transform = `scale(${scale})`;
+    scaleControl.value = `${scale * 100}%`;
+  }
+};
+
 pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);
 
 pristine.addValidator(commentInput, validateComment, errorComment, 2, false);
@@ -61,3 +84,9 @@ uploadFile.addEventListener('change', onPhotoSelect);
 hashtagInput.addEventListener('input', onHashtagInput);
 
 uploadForm.addEventListener('submit', onFormSubmit);
+
+smaller.addEventListener('click', onSmallerClick);
+
+bigger.addEventListener('click', onBiggerClick);
+
+export { uploadForm, img };
