@@ -5,6 +5,8 @@ const MAX_SYMBOLS = 20;
 const MAX_COMMENT_LENGTH = 140;
 const MAX_EFFECT_LEVEL = 100;
 const SCALE_STEP = 0.25;
+const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
+const REMOVE_MESSAGE_TIMEOUT = 5000;
 
 const sliderOptionsObjectChromeSepia = {
   range: {
@@ -65,5 +67,19 @@ const StyleFilterByEffects = {
   heat: getHeatStyleFilter,
 };
 
+const Route = {
+  GET_DATA: '/data',
+  SEND_DATA: '/',
+};
 
-export { PHOTOCOUNT, COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects, SCALE_STEP };
+const Method = {
+  GET: 'GET',
+  POST: 'POST',
+};
+
+const ErrorText = {
+  [Method.GET]: 'Не удалось загрузить данные. Попробуйте еще раз',
+  [Method.POST]: 'Не удалось отправить данные формы',
+};
+
+export { PHOTOCOUNT, COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects, SCALE_STEP, BASE_URL, Route, Method, ErrorText, REMOVE_MESSAGE_TIMEOUT };

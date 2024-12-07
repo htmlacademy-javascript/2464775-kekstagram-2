@@ -1,6 +1,7 @@
 import { error, validateHashtags } from './check-hashtag.js';
 import { errorComment, validateComment } from './check-comment.js';
 import { SCALE_STEP } from './const.js';
+import { sendData } from './api.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -12,6 +13,7 @@ const smaller = uploadForm.querySelector('.scale__control--smaller');
 const bigger = uploadForm.querySelector('.scale__control--bigger');
 const img = uploadForm.querySelector('.img-upload__preview');
 const scaleControl = uploadForm.querySelector('.scale__control--value');
+const formSubmitButton = uploadForm.querySelector('.img-upload__submit');
 
 let scale = 1;
 
@@ -73,6 +75,21 @@ const onBiggerClick = () => {
     img.style.transform = `scale(${scale})`;
     scaleControl.value = `${scale * 100}%`;
   }
+};
+
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...',
+};
+
+const disabledButton = (text) => {
+  formSubmitButton.disabled = true;
+  formSubmitButton.textContent = text;
+};
+
+const enableButton = (text) => {
+  formSubmitButton.disabled = false;
+  formSubmitButton.textContent = text;
 };
 
 pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);

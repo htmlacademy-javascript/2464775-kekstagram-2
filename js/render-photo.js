@@ -55,4 +55,4 @@ container.addEventListener('click', (evt) => {
   }
 });
 
-export { bigPictureNode };
+export { bigPictureNode, openBigPicture };

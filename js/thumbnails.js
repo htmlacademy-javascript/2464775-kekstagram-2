@@ -26,4 +26,4 @@ postsDataArray.forEach((photo) => {
 
 container.appendChild(fragment);
 
-export { container };
+export { container, createThumbnail };
