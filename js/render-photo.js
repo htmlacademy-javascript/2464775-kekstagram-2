@@ -1,4 +1,5 @@
-import { postsDataArray } from './createArray.js';
+// import { postsDataArray } from './createArray.js';
+import { bigPhotos } from './bootstrap.js';
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 
@@ -28,7 +29,8 @@ const closeBigPicture = () => {
 };
 
 const openBigPicture = (pictureId) => {
-  const currentPhoto = postsDataArray.find((photo) => photo.id === Number(pictureId));
+  // const currentPhoto = postsDataArray.find((photo) => photo.id === Number(pictureId));
+  const currentPhoto = bigPhotos.find((photo) => photo.id === Number(pictureId));
   const socialCommentsFragment = document.createDocumentFragment();
 
   bigPictureImgNode.src = currentPhoto.url;
