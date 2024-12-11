@@ -6,7 +6,7 @@ const closeNotification = (evt) => {
   evt.stopPropagation();
   const existElement = document.querySelector('.success') || document.querySelector('.error');
   const closeButton = existElement.querySelector('button');
-  if (evt.target === existElement || evt.target === closeButton || onEscapeKeydown(evt)) {
+  if (evt.target === existElement || evt.target === closeButton || onEscKeydown(evt)) {
     existElement.remove();
     body.removeEventListener('click', closeNotification);
     body.removeEventListener('keydown', closeNotification);
