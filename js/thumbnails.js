@@ -1,5 +1,3 @@
-import { postsDataArray } from './createArray.js';
-
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
 
@@ -17,13 +15,15 @@ const createThumbnail = (photo) => {
   return thumbnail;
 };
 
-const fragment = document.createDocumentFragment();
+const initThumbnailsCreation = (data) => {
+  const fragment = document.createDocumentFragment();
 
-postsDataArray.forEach((photo) => {
-  const thumbnail = createThumbnail(photo);
-  fragment.appendChild(thumbnail);
-});
+  data.forEach((photo) => {
+    const thumbnail = createThumbnail(photo);
+    fragment.appendChild(thumbnail);
+  });
 
-container.appendChild(fragment);
+  container.appendChild(fragment);
+};
 
-export { container };
+export { container, createThumbnail, initThumbnailsCreation };

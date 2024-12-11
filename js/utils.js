@@ -1,3 +1,5 @@
+import { REMOVE_MESSAGE_TIMEOUT } from './const.js';
+
 const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(min, max));
   const upper = Math.floor(Math.max(min, max));
@@ -27,8 +29,26 @@ const createIdFromRangeGenerator = () => {
   };
 };
 
+const errorLoadDataTemplate = document.querySelector('#data-error').content;
+const body = document.body;
+
+const showErrorMessage = (message) => {
+  const errorArea = errorLoadDataTemplate.cloneNode(true);
+  if (message) {
+    errorArea.querySelector('.data-error__title').textContent = message;
+  }
+  body.append(errorArea);
+
+  const errorLoadDataArea = body.querySelector('.data-error');
+
+  setTimeout(() => {
+    errorLoadDataArea.remove();
+  }, REMOVE_MESSAGE_TIMEOUT);
+};
+
 export {
   getRandomInteger,
   createRandomIdFromRangeGenerator,
   createIdFromRangeGenerator,
+  showErrorMessage,
 };

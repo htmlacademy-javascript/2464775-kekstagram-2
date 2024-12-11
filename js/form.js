@@ -1,6 +1,8 @@
 import { error, validateHashtags } from './check-hashtag.js';
 import { errorComment, validateComment } from './check-comment.js';
 import { SCALE_STEP } from './const.js';
+import { sendData } from './api.js';
+import { appendNotification } from './notification.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -12,8 +14,27 @@ const smaller = uploadForm.querySelector('.scale__control--smaller');
 const bigger = uploadForm.querySelector('.scale__control--bigger');
 const img = uploadForm.querySelector('.img-upload__preview');
 const scaleControl = uploadForm.querySelector('.scale__control--value');
+const formSubmitButton = uploadForm.querySelector('.img-upload__submit');
+const effectLevel = uploadForm.querySelector('.img-upload__effect-level');
+const templateSuccess = document.querySelector('#success').content;
+const templateError = document.querySelector('#error').content;
 
 let scale = 1;
+
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...',
+};
+
+const disabledButton = () => {
+  formSubmitButton.disabled = true;
+  formSubmitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const enableButton = () => {
+  formSubmitButton.disabled = false;
+  formSubmitButton.textContent = SubmitButtonText.IDLE;
+};
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
@@ -39,10 +60,16 @@ const onEscapeKeydown = (evt) => {
   }
 };
 
+const reset = () => {
+  img.style.removeProperty('filter');
+  effectLevel.classList.add('hidden');
+};
+
 const onPhotoSelect = () => {
   document.body.classList.add('modal-open');
   uploadOverlay.classList.remove('hidden');
   imgUploadCancel.addEventListener('click', onImgUploadClose);
+  reset();
   document.addEventListener('keydown', onEscapeKeydown);
 };
 
@@ -50,13 +77,26 @@ const onHashtagInput = () => {
   validateHashtags(hashtagInput.value);
 };
 
+const sendFormData = async (formElement) => {
+  const isValid = pristine.validate();
+  if (isValid) {
+    disabledButton();
+    try {
+      await sendData(new FormData(formElement));
+      appendNotification(templateSuccess);
+    } catch {
+      appendNotification(templateError);
+    } finally {
+      enableButton();
+      onImgUploadClose();
+      reset();
+    }
+  }
+};
+
 const onFormSubmit = (evt) => {
   evt.preventDefault();
-
-  if(pristine.validate()) {
-    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
-    uploadForm.submit();
-  }
+  sendFormData(evt.target);
 };
 
 const onSmallerClick = () => {

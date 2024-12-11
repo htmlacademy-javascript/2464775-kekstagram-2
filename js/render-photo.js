@@ -1,4 +1,4 @@
-import { postsDataArray } from './createArray.js';
+import { photosData } from './bootstrap.js';
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 
@@ -28,7 +28,7 @@ const closeBigPicture = () => {
 };
 
 const openBigPicture = (pictureId) => {
-  const currentPhoto = postsDataArray.find((photo) => photo.id === Number(pictureId));
+  const currentPhoto = photosData.find((photo) => photo.id === Number(pictureId));
   const socialCommentsFragment = document.createDocumentFragment();
 
   bigPictureImgNode.src = currentPhoto.url;
@@ -55,4 +55,4 @@ container.addEventListener('click', (evt) => {
   }
 });
 
-export { bigPictureNode };
+export { bigPictureNode, openBigPicture, onEscKeydown };
