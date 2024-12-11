@@ -14,8 +14,24 @@ const bigger = uploadForm.querySelector('.scale__control--bigger');
 const img = uploadForm.querySelector('.img-upload__preview');
 const scaleControl = uploadForm.querySelector('.scale__control--value');
 const formSubmitButton = uploadForm.querySelector('.img-upload__submit');
+const effectLevel = uploadForm.querySelector('.img-upload__effect-level');
 
 let scale = 1;
+
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...',
+};
+
+const disabledButton = () => {
+  formSubmitButton.disabled = true;
+  formSubmitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const enableButton = () => {
+  formSubmitButton.disabled = false;
+  formSubmitButton.textContent = SubmitButtonText.IDLE;
+};
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
@@ -52,13 +68,28 @@ const onHashtagInput = () => {
   validateHashtags(hashtagInput.value);
 };
 
+const reset = () => {
+  onImgUploadClose();
+  img.style.removeProperty('filter');
+  effectLevel.classList.add('hidden');
+};
+
+const sendFormData = async (formElement) => {
+  try {
+    const isValid = pristine.validate();
+    if (isValid) {
+      disabledButton();
+      await sendData(new FormData(formElement));
+    }
+  } finally {
+    enableButton();
+    reset();
+  }
+};
+
 const onFormSubmit = (evt) => {
   evt.preventDefault();
-
-  if(pristine.validate()) {
-    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
-    uploadForm.submit();
-  }
+  sendFormData(evt.target);
 };
 
 const onSmallerClick = () => {
@@ -75,21 +106,6 @@ const onBiggerClick = () => {
     img.style.transform = `scale(${scale})`;
     scaleControl.value = `${scale * 100}%`;
   }
-};
-
-const SubmitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...',
-};
-
-const disabledButton = (text) => {
-  formSubmitButton.disabled = true;
-  formSubmitButton.textContent = text;
-};
-
-const enableButton = (text) => {
-  formSubmitButton.disabled = false;
-  formSubmitButton.textContent = text;
 };
 
 pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);
