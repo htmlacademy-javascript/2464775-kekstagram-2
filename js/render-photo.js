@@ -14,7 +14,7 @@ const onbigPictureCancelClick = () => {
 };
 
 const onEscKeydown = (evt) => {
-  if (evt.key === 'Escape') {
+  if (evt.key === 'Escape' || evt.key === 'Esc') {
     closeBigPicture();
   }
 };
@@ -55,4 +55,4 @@ container.addEventListener('click', (evt) => {
   }
 });
 
-export { bigPictureNode, openBigPicture, onEscKeydown };
+export { bigPictureNode, openBigPicture };

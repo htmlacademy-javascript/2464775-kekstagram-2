@@ -1,11 +1,16 @@
-import { onEscKeydown } from './render-photo.js';
-
 const body = document.body;
 
 const closeNotification = (evt) => {
   evt.stopPropagation();
   const existElement = document.querySelector('.success') || document.querySelector('.error');
   const closeButton = existElement.querySelector('button');
+
+  const onEscKeydown = (event) => {
+    if (event.key === 'Escape' || event.key === 'Esc') {
+      existElement.remove();
+    }
+  };
+
   if (evt.target === existElement || evt.target === closeButton || onEscKeydown(evt)) {
     existElement.remove();
     body.removeEventListener('click', closeNotification);
