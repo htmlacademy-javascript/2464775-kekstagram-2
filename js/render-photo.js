@@ -19,13 +19,13 @@ const onEscKeydown = (evt) => {
   }
 };
 
-const closeBigPicture = () => {
+function closeBigPicture () {
   clearComments();
 
   bigPictureNode.classList.add('hidden');
   bigPictureCancelNode.removeEventListener('click', onbigPictureCancelClick);
   document.removeEventListener('keydown', onEscKeydown);
-};
+}
 
 const openBigPicture = (pictureId) => {
   const currentPhoto = photosData.find((photo) => photo.id === Number(pictureId));

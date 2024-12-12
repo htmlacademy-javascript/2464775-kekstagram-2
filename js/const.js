@@ -1,4 +1,3 @@
-const PHOTOCOUNT = 25;
 const COUNT_STEP = 5;
 const MAX_HASHTAGS = 5;
 const MAX_SYMBOLS = 20;
@@ -82,4 +81,4 @@ const ErrorText = {
   [Method.POST]: 'Не удалось отправить данные формы',
 };
 
-export { PHOTOCOUNT, COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects, SCALE_STEP, BASE_URL, Route, Method, ErrorText, REMOVE_MESSAGE_TIMEOUT };
+export { COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects, SCALE_STEP, BASE_URL, Route, Method, ErrorText, REMOVE_MESSAGE_TIMEOUT };

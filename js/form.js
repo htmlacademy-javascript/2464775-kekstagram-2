@@ -42,6 +42,7 @@ const pristine = new Pristine(uploadForm, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
+
 const onImgUploadClose = () => {
   document.body.classList.remove('modal-open');
   uploadOverlay.classList.add('hidden');
@@ -49,7 +50,7 @@ const onImgUploadClose = () => {
   document.removeEventListener('keydown', onEscapeKeydown);
 };
 
-const onEscapeKeydown = (evt) => {
+function onEscapeKeydown (evt) {
   if (evt.key === 'Escape' || evt.key === 'Esc') {
     evt.preventDefault();
     if (document.activeElement === hashtagInput || document.activeElement === commentInput) {
@@ -58,7 +59,7 @@ const onEscapeKeydown = (evt) => {
       onImgUploadClose();
     }
   }
-};
+}
 
 const reset = () => {
   img.style.removeProperty('filter');
