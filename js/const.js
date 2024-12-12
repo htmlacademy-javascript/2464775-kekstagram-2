@@ -6,6 +6,7 @@ const MAX_EFFECT_LEVEL = 100;
 const SCALE_STEP = 0.25;
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 const REMOVE_MESSAGE_TIMEOUT = 5000;
+const TIMEOUT_DELAY = 500;
 
 const sliderOptionsObjectChromeSepia = {
   range: {
@@ -81,4 +82,35 @@ const ErrorText = {
   [Method.POST]: 'Не удалось отправить данные формы',
 };
 
-export { COUNT_STEP, MAX_HASHTAGS, MAX_SYMBOLS, MAX_COMMENT_LENGTH, MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects, SCALE_STEP, BASE_URL, Route, Method, ErrorText, REMOVE_MESSAGE_TIMEOUT };
+const FILTER = {
+  default: 'filter-default',
+  random: 'filter-random',
+  discussed: 'filter-discussed',
+};
+
+const SORT_FUNC = {
+  random:() => 0.5 - Math.random(),
+  discussed: (a, b) => b.comments.length - a.comments.length,
+};
+
+const MAX_PICTURE_COUNT = 10;
+
+export {
+  COUNT_STEP,
+  MAX_HASHTAGS,
+  MAX_SYMBOLS,
+  MAX_COMMENT_LENGTH,
+  MAX_EFFECT_LEVEL,
+  Effects,
+  StyleFilterByEffects,
+  SCALE_STEP,
+  BASE_URL,
+  Route,
+  Method,
+  ErrorText,
+  REMOVE_MESSAGE_TIMEOUT,
+  FILTER,
+  SORT_FUNC,
+  MAX_PICTURE_COUNT,
+  TIMEOUT_DELAY
+};
