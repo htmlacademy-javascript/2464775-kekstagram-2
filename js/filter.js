@@ -46,3 +46,5 @@ const configFilter = (picturedData) => {
   filterElement.addEventListener('click', onFilterChange);
   pictures = picturedData;
 };
+
+export { configFilter };
