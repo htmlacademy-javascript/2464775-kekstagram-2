@@ -12,7 +12,7 @@ const debounceRender = debounce(openBigPicture);
 
 const onFilterChange = (evt) => {
   const targetButton = evt.target;
-  const activeButton = activeFilterButton;
+  const activeButton = document.querySelector(`.${activeFilterButton}`);
   if (!targetButton.closest('button')) {
     return;
   }
@@ -25,7 +25,7 @@ const onFilterChange = (evt) => {
   targetButton.classList.toggle(activeFilterButton);
   currentFilter = targetButton.getAttribute('id');
 
-  applyFilter();
+  applyFilter ();
 };
 
 function applyFilter () {
@@ -34,10 +34,10 @@ function applyFilter () {
     filteredPictures = pictures;
   }
   if (currentFilter === FILTER.random) {
-    filteredPictures = pictures.sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
+    filteredPictures = pictures.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
   }
   if (currentFilter === FILTER.discussed) {
-    filteredPictures = pictures.sort(SORT_FUNC.discussed);
+    filteredPictures = pictures.slice().sort(SORT_FUNC.discussed);
   }
   debounceRender(filteredPictures);
 }
