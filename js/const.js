@@ -89,7 +89,7 @@ const FILTER = {
 };
 
 const SORT_FUNC = {
-  random:() => 0.5 - Math.random(),
+  random: () => 0.5 - Math.random(),
   discussed: (a, b) => b.comments.length - a.comments.length,
 };
 
