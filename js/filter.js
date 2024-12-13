@@ -4,7 +4,6 @@ import { FILTER, SORT_FUNC, MAX_PICTURE_COUNT } from './const.js';
 import { photosData } from './bootstrap.js';
 
 let currentFilter = FILTER.default;
-let pictures = [];
 const filterElement = document.querySelector('.img-filters');
 const activeFilterButton = 'img-filters__button--active';
 
@@ -31,21 +30,20 @@ const onFilterChange = (evt) => {
 function applyFilter () {
   let filteredPictures = [];
   if (currentFilter === FILTER.default) {
-    filteredPictures = pictures;
+    filteredPictures = photosData;
   }
   if (currentFilter === FILTER.random) {
-    filteredPictures = pictures.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
+    filteredPictures = photosData.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
   }
   if (currentFilter === FILTER.discussed) {
-    filteredPictures = pictures.slice().sort(SORT_FUNC.discussed);
+    filteredPictures = photosData.slice().sort(SORT_FUNC.discussed);
   }
   debounceRender(filteredPictures);
 }
 
-const configFilter = (picturedData) => {
+const configFilter = () => {
   filterElement.classList.remove('img-filters--inactive');
   filterElement.addEventListener('click', onFilterChange);
-  pictures = picturedData;
 };
 
 configFilter(photosData);
