@@ -95,6 +95,8 @@ const SORT_FUNC = {
 
 const MAX_PICTURE_COUNT = 10;
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 export {
   COUNT_STEP,
   MAX_HASHTAGS,
@@ -112,5 +114,6 @@ export {
   FILTER,
   SORT_FUNC,
   MAX_PICTURE_COUNT,
-  TIMEOUT_DELAY
+  TIMEOUT_DELAY,
+  FILE_TYPES,
 };
