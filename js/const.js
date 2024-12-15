@@ -1,12 +1,14 @@
+const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 const COUNT_STEP = 5;
 const MAX_HASHTAGS = 5;
 const MAX_SYMBOLS = 20;
 const MAX_COMMENT_LENGTH = 140;
 const MAX_EFFECT_LEVEL = 100;
 const SCALE_STEP = 0.25;
-const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 const REMOVE_MESSAGE_TIMEOUT = 5000;
 const TIMEOUT_DELAY = 500;
+const MAX_PICTURE_COUNT = 10;
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const sliderOptionsObjectChromeSepia = {
   range: {
@@ -92,10 +94,6 @@ const SORT_FUNC = {
   random: () => 0.5 - Math.random(),
   discussed: (a, b) => b.comments.length - a.comments.length,
 };
-
-const MAX_PICTURE_COUNT = 10;
-
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 export {
   COUNT_STEP,

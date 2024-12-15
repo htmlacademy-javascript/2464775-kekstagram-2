@@ -7,7 +7,6 @@ let photosData;
 const bootstrap = async () => {
   try {
     photosData = await getData();
-
     initThumbnailsCreation(photosData);
   } catch (error) {
     showErrorMessage(error.message);
@@ -16,4 +15,6 @@ const bootstrap = async () => {
 
 bootstrap();
 
-export { photosData };
+const getPhotosData = () => photosData;
+
+export { getPhotosData };
