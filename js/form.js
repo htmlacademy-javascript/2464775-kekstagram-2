@@ -1,6 +1,6 @@
 import { error, validateHashtags } from './check-hashtag.js';
 import { errorComment, validateComment } from './check-comment.js';
-import { SCALE_STEP } from './const.js';
+import { SCALE_STEP, FILE_TYPES } from './const.js';
 import { sendData } from './api.js';
 import { appendNotification } from './notification.js';
 
@@ -18,6 +18,8 @@ const formSubmitButton = uploadForm.querySelector('.img-upload__submit');
 const effectLevel = uploadForm.querySelector('.img-upload__effect-level');
 const templateSuccess = document.querySelector('#success').content;
 const templateError = document.querySelector('#error').content;
+const fileChooser = uploadForm.querySelector('.img-upload__input');
+const preview = img.querySelector('.img-upload__preview > img');
 
 let scale = 1;
 
@@ -42,6 +44,7 @@ const pristine = new Pristine(uploadForm, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
+
 const onImgUploadClose = () => {
   document.body.classList.remove('modal-open');
   uploadOverlay.classList.add('hidden');
@@ -49,7 +52,7 @@ const onImgUploadClose = () => {
   document.removeEventListener('keydown', onEscapeKeydown);
 };
 
-const onEscapeKeydown = (evt) => {
+function onEscapeKeydown (evt) {
   if (evt.key === 'Escape' || evt.key === 'Esc') {
     evt.preventDefault();
     if (document.activeElement === hashtagInput || document.activeElement === commentInput) {
@@ -58,7 +61,7 @@ const onEscapeKeydown = (evt) => {
       onImgUploadClose();
     }
   }
-};
+}
 
 const reset = () => {
   img.style.removeProperty('filter');
@@ -80,6 +83,7 @@ const onHashtagInput = () => {
 const sendFormData = async (formElement) => {
   const isValid = pristine.validate();
   if (isValid) {
+    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
     disabledButton();
     try {
       await sendData(new FormData(formElement));
@@ -114,6 +118,16 @@ const onBiggerClick = () => {
     scaleControl.value = `${scale * 100}%`;
   }
 };
+
+fileChooser.addEventListener('change', () => {
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
+  if (matches) {
+    preview.src = URL.createObjectURL(file);
+  }
+});
 
 pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);
 

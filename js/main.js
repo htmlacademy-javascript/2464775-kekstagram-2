@@ -5,3 +5,4 @@ import './form.js';
 import './effects-slider.js';
 import './bootstrap.js';
 import './api.js';
+import './filter.js';

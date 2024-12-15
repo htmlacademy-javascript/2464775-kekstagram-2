@@ -1,4 +1,4 @@
-import { REMOVE_MESSAGE_TIMEOUT } from './const.js';
+import { REMOVE_MESSAGE_TIMEOUT, TIMEOUT_DELAY } from './const.js';
 
 const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(min, max));
@@ -46,9 +46,18 @@ const showErrorMessage = (message) => {
   }, REMOVE_MESSAGE_TIMEOUT);
 };
 
+const debounce = (callback, timeoutDelay = TIMEOUT_DELAY) => {
+  let timeoutId;
+  return function() {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback(...arguments), timeoutDelay);
+  };
+};
+
 export {
   getRandomInteger,
   createRandomIdFromRangeGenerator,
   createIdFromRangeGenerator,
   showErrorMessage,
+  debounce,
 };
