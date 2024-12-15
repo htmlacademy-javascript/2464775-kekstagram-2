@@ -1,4 +1,4 @@
-import { openBigPicture } from './render-photo.js';
+import { initThumbnailsCreation } from './thumbnails.js';
 import { debounce } from './utils.js';
 import { FILTER, SORT_FUNC, MAX_PICTURE_COUNT } from './const.js';
 import { photosData } from './bootstrap.js';
@@ -7,7 +7,7 @@ let currentFilter = FILTER.default;
 const filterElement = document.querySelector('.img-filters');
 const activeFilterButton = 'img-filters__button--active';
 
-const debounceRender = debounce(openBigPicture);
+const debounceRender = debounce(initThumbnailsCreation);
 
 const onFilterChange = (evt) => {
   const targetButton = evt.target;

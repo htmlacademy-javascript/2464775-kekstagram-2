@@ -21,9 +21,14 @@ const initThumbnailsCreation = (data) => {
   data.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
     fragment.appendChild(thumbnail);
+    clearThumbnails();
   });
 
   container.appendChild(fragment);
 };
+
+function clearThumbnails () {
+  container.querySelectorAll('a.picture').forEach((item) => item.remove());
+}
 
 export { container, createThumbnail, initThumbnailsCreation };
