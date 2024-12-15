@@ -9,11 +9,11 @@ const validateHashtags = (value) => {
 
   const inputText = value.toLowerCase().trim();
 
-  const inputArray = inputText.split(/\s+/);
+  const inputArray = inputText.split(' ');
 
   const rules = [
     {
-      check: inputArray.some((item) => item[0] === '#'),
+      check: inputArray.some((item) => item[0] === '#' && item.length === 1),
       error: 'Хеш-тег не может состоять только из одной решётки',
     },
     {
@@ -29,15 +29,15 @@ const validateHashtags = (value) => {
       error: 'Один и тот же хэштег не может быть использован дважды',
     },
     {
-      check: inputArray.some((item) => item.lenght > MAX_SYMBOLS),
+      check: inputArray.some((item) => item.length > MAX_SYMBOLS),
       error: `Mаксимальная длина одного хэштега ${MAX_SYMBOLS} символов, включая решётку`,
     },
     {
-      check: inputArray.lenght > MAX_HASHTAGS,
+      check: inputArray.length > MAX_HASHTAGS,
       error: `Нельзя указать больше ${MAX_HASHTAGS} хэштега (-ов)`,
     },
     {
-      check: inputArray.some((item) => !/^#[a-zа-яё0-9]$/i.test(item)),
+      check: inputArray.some((item) => !/^#[A-Za-zа-яё0-9]+$/i.test(item)),
       error: 'Хэштег содержит недопустимые символы',
     },
   ];

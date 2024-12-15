@@ -83,6 +83,7 @@ const onHashtagInput = () => {
 const sendFormData = async (formElement) => {
   const isValid = pristine.validate();
   if (isValid) {
+    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, ' ');
     disabledButton();
     try {
       await sendData(new FormData(formElement));
