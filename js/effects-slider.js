@@ -9,7 +9,7 @@ effectLevelValue.value = MAX_EFFECT_LEVEL;
 const effectRadioBtn = uploadForm.querySelectorAll('.effects__radio');
 const effectRadioBtnList = uploadForm.querySelector('.effects__list');
 
-const UpdateSliderOptions = (effect, sliderElement) => {
+const updateSliderOptions = (effect, sliderElement) => {
   sliderElement.noUiSlider.updateOptions(Effects[effect]);
 };
 
@@ -35,7 +35,7 @@ const onEffectRadioBtn = (evt) => {
   if (currentRadioBtn) {
     const effectBtnValue = currentRadioBtn.value;
     img.classList.add(getEffectSelector(effectBtnValue));
-    UpdateSliderOptions(effectBtnValue, slider);
+    updateSliderOptions(effectBtnValue, slider);
   }
 };
 

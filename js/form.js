@@ -124,6 +124,7 @@ fileChooser.addEventListener('change', () => {
   const fileName = file.name.toLowerCase();
 
   const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
+
   if (matches) {
     preview.src = URL.createObjectURL(file);
   }

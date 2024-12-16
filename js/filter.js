@@ -1,7 +1,7 @@
 import { initThumbnailsCreation } from './thumbnails.js';
 import { debounce } from './utils.js';
 import { FILTER, SORT_FUNC, MAX_PICTURE_COUNT } from './const.js';
-import { photosData } from './bootstrap.js';
+import { getPhotosData } from './bootstrap.js';
 
 let currentFilter = FILTER.default;
 const filterElement = document.querySelector('.img-filters');
@@ -30,13 +30,13 @@ const onFilterChange = (evt) => {
 function applyFilter () {
   let filteredPictures = [];
   if (currentFilter === FILTER.default) {
-    filteredPictures = photosData;
+    filteredPictures = getPhotosData;
   }
   if (currentFilter === FILTER.random) {
-    filteredPictures = photosData.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
+    filteredPictures = getPhotosData.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
   }
   if (currentFilter === FILTER.discussed) {
-    filteredPictures = photosData.slice().sort(SORT_FUNC.discussed);
+    filteredPictures = getPhotosData.slice().sort(SORT_FUNC.discussed);
   }
   debounceRender(filteredPictures);
 }
@@ -46,4 +46,4 @@ const configFilter = () => {
   filterElement.addEventListener('click', onFilterChange);
 };
 
-configFilter(photosData);
+configFilter(getPhotosData);
