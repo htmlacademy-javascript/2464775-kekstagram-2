@@ -1,4 +1,4 @@
-import { uploadForm, img } from './form.js';
+import { uploadForm, img, preview } from './form.js';
 import { MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects } from './const.js';
 
 const imgUploadWrapper = document.querySelector('.img-upload__wrapper');
@@ -14,7 +14,7 @@ const updateSliderOptions = (effect, sliderElement) => {
 };
 
 const resetFilter = () => {
-  img.style.removeProperty('filter');
+  preview.style.removeProperty('filter');
   effectLevel.classList.add('hidden');
 };
 
@@ -71,7 +71,7 @@ slider.noUiSlider.on('update', () => {
           default:
             value = effectLevelValue.value;
         }
-        img.style.filter = StyleFilterByEffects[item.value](value);
+        preview.style.filter = StyleFilterByEffects[item.value](value);
       } else {
         resetFilter();
       }
