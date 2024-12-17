@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { getPhotosData } from './bootstrap.js';
+=======
+import { getphotosData } from './bootstrap.js';
+>>>>>>> f58fe66 (Правки по разделу 2 (после теста))
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 
@@ -28,7 +32,11 @@ function closeBigPicture () {
 }
 
 const openBigPicture = (pictureId) => {
+<<<<<<< HEAD
   const photosArray = getPhotosData();
+=======
+  const photosArray = getphotosData();
+>>>>>>> f58fe66 (Правки по разделу 2 (после теста))
   const currentPhoto = photosArray.find((photo) => photo.id === Number(pictureId));
   const socialCommentsFragment = document.createDocumentFragment();
 
