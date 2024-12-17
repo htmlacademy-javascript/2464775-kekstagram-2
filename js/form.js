@@ -20,7 +20,7 @@ const templateSuccess = document.querySelector('#success').content;
 const templateError = document.querySelector('#error').content;
 const fileChooser = uploadForm.querySelector('.img-upload__input');
 const preview = img.querySelector('.img-upload__preview > img');
-
+const previewEffect = uploadForm.querySelectorAll('.effects__preview');
 let scale = 1;
 
 const SubmitButtonText = {
@@ -127,6 +127,10 @@ fileChooser.addEventListener('change', () => {
   const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
   if (matches) {
     preview.src = URL.createObjectURL(file);
+    const bgURL = preview.src;
+    Array.from(previewEffect).forEach((el) => {
+      el.style.backgroundImage = `url(${bgURL})`;
+    });
   }
 });
 
