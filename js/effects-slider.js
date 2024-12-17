@@ -50,11 +50,12 @@ noUiSlider.create(slider, {
 });
 
 slider.noUiSlider.on('update', () => {
-  effectLevelValue.value = slider.noUiSlider.get();
+  const value = slider.noUiSlider.get();
+  const formattedValue = parseFloat(value);
+  effectLevelValue.value = formattedValue;
 });
 
 slider.noUiSlider.on('update', () => {
-  effectLevelValue.value = slider.noUiSlider.get();
   effectRadioBtn.forEach((item) => {
     if(item.checked) {
       if (item.value !== 'none') {

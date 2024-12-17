@@ -1,4 +1,4 @@
-import { photosData } from './bootstrap.js';
+import { getphotosData } from './bootstrap.js';
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 
@@ -28,7 +28,8 @@ function closeBigPicture () {
 }
 
 const openBigPicture = (pictureId) => {
-  const currentPhoto = photosData.find((photo) => photo.id === Number(pictureId));
+  const photosArray = getphotosData();
+  const currentPhoto = photosArray.find((photo) => photo.id === Number(pictureId));
   const socialCommentsFragment = document.createDocumentFragment();
 
   bigPictureImgNode.src = currentPhoto.url;

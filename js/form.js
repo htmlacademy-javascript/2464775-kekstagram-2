@@ -66,6 +66,7 @@ function onEscapeKeydown (evt) {
 const reset = () => {
   preview.style.removeProperty('filter');
   effectLevel.classList.add('hidden');
+  Array.from(document.querySelectorAll('.pristine-error')).forEach((el) => el.remove());
 };
 
 const onPhotoSelect = () => {

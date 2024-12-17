@@ -9,7 +9,7 @@ const validateHashtags = (value) => {
 
   const inputText = value.toLowerCase().trim();
 
-  const inputArray = inputText.split(' ');
+  const inputArray = inputText.split(/\s+/);
 
   const rules = [
     {
