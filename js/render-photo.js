@@ -31,13 +31,11 @@ function closeBigPicture () {
 const openBigPicture = (pictureId) => {
   const photosArray = getphotosData();
   const currentPhoto = photosArray.find((photo) => photo.id === Number(pictureId));
-  const socialCommentsFragment = document.createDocumentFragment();
 
   bigPictureImgNode.src = currentPhoto.url;
   likesCountNode.textContent = currentPhoto.likes;
   socialCommentsNode.innerHTML = '';
 
-  socialCommentsNode.appendChild(socialCommentsFragment);
   commentsCaptionNode.textContent = currentPhoto.description;
 
   renderComments(currentPhoto.comments);
