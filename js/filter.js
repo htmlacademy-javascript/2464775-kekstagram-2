@@ -63,11 +63,14 @@ const configFilter = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 configFilter(getPhotosData);
 =======
 configFilter(getphotosData);
 >>>>>>> f58fe66 (Правки по разделу 2 (после теста))
 =======
 // configFilter(getphotosData);
+=======
+>>>>>>> ebc7dc6 (Удаляет)
 export { configFilter };
 >>>>>>> f47d800 (Вносит правки в раздел 5 после теста)
