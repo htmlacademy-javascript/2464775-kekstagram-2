@@ -21,6 +21,7 @@ const onEscKeydown = (evt) => {
 
 function closeBigPicture () {
   clearComments();
+  document.body.classList.remove('modal-open');
 
   bigPictureNode.classList.add('hidden');
   bigPictureCancelNode.removeEventListener('click', onbigPictureCancelClick);
