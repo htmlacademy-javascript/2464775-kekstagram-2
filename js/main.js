@@ -19,6 +19,6 @@ const bootstrap = async () => {
 
 bootstrap();
 
-const getphotosData = () => photosData;
+const getPhotosData = () => photosData;
 
-export { getphotosData };
+export { getPhotosData };

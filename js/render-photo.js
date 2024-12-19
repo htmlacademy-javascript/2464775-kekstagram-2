@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { getPhotosData } from './bootstrap.js';
-=======
-import { getphotosData } from './bootstrap.js';
->>>>>>> f58fe66 (Правки по разделу 2 (после теста))
-=======
-import { getphotosData } from './main.js';
->>>>>>> 14fd50d (Правки)
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 
@@ -29,7 +21,6 @@ const onEscKeydown = (evt) => {
 
 function closeBigPicture () {
   clearComments();
-  document.body.classList.remove('modal-open');
 
   bigPictureNode.classList.add('hidden');
   bigPictureCancelNode.removeEventListener('click', onbigPictureCancelClick);
@@ -37,17 +28,15 @@ function closeBigPicture () {
 }
 
 const openBigPicture = (pictureId) => {
-<<<<<<< HEAD
   const photosArray = getPhotosData();
-=======
-  const photosArray = getphotosData();
->>>>>>> f58fe66 (Правки по разделу 2 (после теста))
   const currentPhoto = photosArray.find((photo) => photo.id === Number(pictureId));
+  const socialCommentsFragment = document.createDocumentFragment();
 
   bigPictureImgNode.src = currentPhoto.url;
   likesCountNode.textContent = currentPhoto.likes;
   socialCommentsNode.innerHTML = '';
 
+  socialCommentsNode.appendChild(socialCommentsFragment);
   commentsCaptionNode.textContent = currentPhoto.description;
 
   renderComments(currentPhoto.comments);
