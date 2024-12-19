@@ -6,7 +6,7 @@ const createThumbnail = (photo) => {
   const image = thumbnail.querySelector('.picture__img');
 
   image.src = photo.url;
-  image.alt = photo.decsriprion;
+  image.alt = photo.description;
 
   thumbnail.setAttribute('data-id', photo.id);
   thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
@@ -21,9 +21,9 @@ const initThumbnailsCreation = (data) => {
   data.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
     fragment.appendChild(thumbnail);
-    clearThumbnails();
   });
 
+  clearThumbnails();
   container.appendChild(fragment);
 };
 
