@@ -43,13 +43,11 @@ const openBigPicture = (pictureId) => {
   const photosArray = getphotosData();
 >>>>>>> f58fe66 (Правки по разделу 2 (после теста))
   const currentPhoto = photosArray.find((photo) => photo.id === Number(pictureId));
-  const socialCommentsFragment = document.createDocumentFragment();
 
   bigPictureImgNode.src = currentPhoto.url;
   likesCountNode.textContent = currentPhoto.likes;
   socialCommentsNode.innerHTML = '';
 
-  socialCommentsNode.appendChild(socialCommentsFragment);
   commentsCaptionNode.textContent = currentPhoto.description;
 
   renderComments(currentPhoto.comments);
