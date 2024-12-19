@@ -89,12 +89,12 @@ const sendFormData = async (formElement) => {
     try {
       await sendData(new FormData(formElement));
       appendNotification(templateSuccess);
+      reset();
+      uploadForm.reset();
     } catch {
       appendNotification(templateError);
     } finally {
       enableButton();
-      onImgUploadClose();
-      reset();
     }
   }
 };
