@@ -90,7 +90,7 @@ const sendFormData = async (formElement) => {
       await sendData(new FormData(formElement));
       appendNotification(templateSuccess);
       reset();
-      uploadForm.reset();
+      onImgUploadClose();
     } catch {
       appendNotification(templateError);
     } finally {
