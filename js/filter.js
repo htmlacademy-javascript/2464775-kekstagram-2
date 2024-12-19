@@ -2,10 +2,14 @@ import { initThumbnailsCreation } from './thumbnails.js';
 import { debounce } from './utils.js';
 import { FILTER, SORT_FUNC, MAX_PICTURE_COUNT } from './const.js';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { getPhotosData } from './bootstrap.js';
 =======
 import { getphotosData } from './bootstrap.js';
 >>>>>>> f58fe66 (Правки по разделу 2 (после теста))
+=======
+import { getphotosData } from './main.js';
+>>>>>>> 14fd50d (Правки)
 
 let currentFilter = FILTER.default;
 const filterElement = document.querySelector('.img-filters');

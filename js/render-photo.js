@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { getPhotosData } from './bootstrap.js';
 =======
 import { getphotosData } from './bootstrap.js';
 >>>>>>> f58fe66 (Правки по разделу 2 (после теста))
+=======
+import { getphotosData } from './main.js';
+>>>>>>> 14fd50d (Правки)
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 

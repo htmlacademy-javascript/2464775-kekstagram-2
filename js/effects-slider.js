@@ -6,7 +6,7 @@ const slider = imgUploadWrapper.querySelector('.effect-level__slider');
 const effectLevel = imgUploadWrapper.querySelector('.img-upload__effect-level');
 const effectLevelValue = imgUploadWrapper.querySelector('.effect-level__value');
 effectLevelValue.value = MAX_EFFECT_LEVEL;
-const effectRadioBtn = uploadForm.querySelectorAll('.effects__radio');
+const effectRadioBtns = uploadForm.querySelectorAll('.effects__radio');
 const effectRadioBtnList = uploadForm.querySelector('.effects__list');
 
 const updateSliderOptions = (effect, sliderElement) => {
@@ -56,7 +56,7 @@ slider.noUiSlider.on('update', () => {
 });
 
 slider.noUiSlider.on('update', () => {
-  effectRadioBtn.forEach((item) => {
+  effectRadioBtns.forEach((item) => {
     if(item.checked) {
       if (item.value !== 'none') {
         effectLevel.classList.remove('hidden');
