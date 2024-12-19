@@ -34,7 +34,7 @@ function applyFilter () {
     filteredPictures = photosArray;
   }
   if (currentFilter === FILTER.random) {
-    filteredPictures = getPhotosData.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
+    filteredPictures = photosArray.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
   }
   if (currentFilter === FILTER.discussed) {
     filteredPictures = photosArray.slice().sort(SORT_FUNC.discussed);
