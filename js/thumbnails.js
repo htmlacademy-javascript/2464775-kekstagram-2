@@ -21,9 +21,9 @@ const initThumbnailsCreation = (data) => {
   data.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
     fragment.appendChild(thumbnail);
-    clearThumbnails();
   });
 
+  clearThumbnails();
   container.appendChild(fragment);
 };
 

@@ -8,6 +8,7 @@ const closeNotification = (evt) => {
   const onEscKeydown = (event) => {
     if (event.key === 'Escape' || event.key === 'Esc') {
       existElement.remove();
+      body.removeEventListener('keydown', onEscKeydown);
     }
   };
 

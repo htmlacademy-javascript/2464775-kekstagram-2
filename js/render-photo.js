@@ -1,4 +1,4 @@
-import { getphotosData } from './bootstrap.js';
+import { getphotosData } from './main.js';
 import { container } from './thumbnails.js';
 import { clearComments, renderComments } from './render-comments.js';
 
