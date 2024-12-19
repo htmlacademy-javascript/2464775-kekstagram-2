@@ -30,7 +30,6 @@ const renderNextComments = () => {
 
   if (renderedCommentsLength >= comments.length) {
     commentsLoaderNode.classList.add('hidden');
-    commentsLoaderNode.addEventListener('click', renderNextComments);
   }
   currentCount += COUNT_STEP;
 };
@@ -50,3 +49,4 @@ const renderComments = (currentPhotoComments) => {
 };
 
 export { clearComments, renderComments };
+

@@ -1,4 +1,4 @@
-import { uploadForm, img } from './form.js';
+import { uploadForm, img, preview } from './form.js';
 import { MAX_EFFECT_LEVEL, Effects, StyleFilterByEffects } from './const.js';
 
 const imgUploadWrapper = document.querySelector('.img-upload__wrapper');
@@ -6,7 +6,7 @@ const slider = imgUploadWrapper.querySelector('.effect-level__slider');
 const effectLevel = imgUploadWrapper.querySelector('.img-upload__effect-level');
 const effectLevelValue = imgUploadWrapper.querySelector('.effect-level__value');
 effectLevelValue.value = MAX_EFFECT_LEVEL;
-const effectRadioBtn = uploadForm.querySelectorAll('.effects__radio');
+const effectRadioBtns = uploadForm.querySelectorAll('.effects__radio');
 const effectRadioBtnList = uploadForm.querySelector('.effects__list');
 
 const updateSliderOptions = (effect, sliderElement) => {
@@ -14,7 +14,7 @@ const updateSliderOptions = (effect, sliderElement) => {
 };
 
 const resetFilter = () => {
-  img.style.removeProperty('filter');
+  preview.style.removeProperty('filter');
   effectLevel.classList.add('hidden');
 };
 
@@ -50,12 +50,13 @@ noUiSlider.create(slider, {
 });
 
 slider.noUiSlider.on('update', () => {
-  effectLevelValue.value = slider.noUiSlider.get();
+  const value = slider.noUiSlider.get();
+  const formattedValue = parseFloat(value);
+  effectLevelValue.value = formattedValue;
 });
 
 slider.noUiSlider.on('update', () => {
-  effectLevelValue.value = slider.noUiSlider.get();
-  effectRadioBtn.forEach((item) => {
+  effectRadioBtns.forEach((item) => {
     if(item.checked) {
       if (item.value !== 'none') {
         effectLevel.classList.remove('hidden');
@@ -71,7 +72,7 @@ slider.noUiSlider.on('update', () => {
           default:
             value = effectLevelValue.value;
         }
-        img.style.filter = StyleFilterByEffects[item.value](value);
+        preview.style.filter = StyleFilterByEffects[item.value](value);
       } else {
         resetFilter();
       }

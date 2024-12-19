@@ -20,7 +20,7 @@ const templateSuccess = document.querySelector('#success').content;
 const templateError = document.querySelector('#error').content;
 const fileChooser = uploadForm.querySelector('.img-upload__input');
 const preview = img.querySelector('.img-upload__preview > img');
-
+const previewEffect = uploadForm.querySelectorAll('.effects__preview');
 let scale = 1;
 
 const SubmitButtonText = {
@@ -39,9 +39,9 @@ const enableButton = () => {
 };
 
 const pristine = new Pristine(uploadForm, {
-  classTo: 'img-upload__form',
+  classTo: 'img-upload__field-wrapper',
+  errorClass: 'img-upload__field-wrapper--error',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error',
 });
 
 
@@ -64,8 +64,9 @@ function onEscapeKeydown (evt) {
 }
 
 const reset = () => {
-  img.style.removeProperty('filter');
+  preview.style.removeProperty('filter');
   effectLevel.classList.add('hidden');
+  Array.from(document.querySelectorAll('.pristine-error')).forEach((el) => el.remove());
 };
 
 const onPhotoSelect = () => {
@@ -88,12 +89,12 @@ const sendFormData = async (formElement) => {
     try {
       await sendData(new FormData(formElement));
       appendNotification(templateSuccess);
+      reset();
+      onImgUploadClose();
     } catch {
       appendNotification(templateError);
     } finally {
       enableButton();
-      onImgUploadClose();
-      reset();
     }
   }
 };
@@ -106,7 +107,7 @@ const onFormSubmit = (evt) => {
 const onSmallerClick = () => {
   if (scale > SCALE_STEP) {
     scale -= SCALE_STEP;
-    img.style.transform = `scale(${scale})`;
+    preview.style.transform = `scale(${scale})`;
     scaleControl.value = `${scale * 100}%`;
   }
 };
@@ -114,7 +115,7 @@ const onSmallerClick = () => {
 const onBiggerClick = () => {
   if (scale < 1) {
     scale += SCALE_STEP;
-    img.style.transform = `scale(${scale})`;
+    preview.style.transform = `scale(${scale})`;
     scaleControl.value = `${scale * 100}%`;
   }
 };
@@ -127,6 +128,10 @@ fileChooser.addEventListener('change', () => {
 
   if (matches) {
     preview.src = URL.createObjectURL(file);
+    const bgURL = preview.src;
+    Array.from(previewEffect).forEach((el) => {
+      el.style.backgroundImage = `url(${bgURL})`;
+    });
   }
 });
 
@@ -144,4 +149,4 @@ smaller.addEventListener('click', onSmallerClick);
 
 bigger.addEventListener('click', onBiggerClick);
 
-export { uploadForm, img };
+export { uploadForm, img, preview };
