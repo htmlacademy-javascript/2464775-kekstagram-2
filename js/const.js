@@ -91,8 +91,8 @@ const FILTER = {
 };
 
 const SORT_FUNC = {
-  random: () => 0.5 - Math.random(),
-  discussed: (a, b) => b.comments.length - a.comments.length,
+  getRandomPhotos: () => 0.5 - Math.random(),
+  getDiscussedPhotos: (a, b) => b.comments.length - a.comments.length,
 };
 
 export {

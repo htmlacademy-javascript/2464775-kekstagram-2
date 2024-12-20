@@ -9,7 +9,7 @@ const socialCommentsTotal = commentsCountNode.querySelector('.social__comment-to
 let currentCount = 0;
 let comments = [];
 
-const renderNextComments = () => {
+const onCommentsLoad = () => {
   const socialCommentsFragment = document.createDocumentFragment();
   const renderedComments = comments.slice(currentCount, currentCount + COUNT_STEP);
   const renderedCommentsLength = renderedComments.length + currentCount;
@@ -38,14 +38,14 @@ const clearComments = () => {
   currentCount = 0;
   socialCommentsNode.innerHTML = '';
   commentsLoaderNode.classList.remove('hidden');
-  commentsLoaderNode.removeEventListener('click', renderNextComments);
+  commentsLoaderNode.removeEventListener('click', onCommentsLoad);
 };
 
 const renderComments = (currentPhotoComments) => {
   comments = currentPhotoComments;
-  renderNextComments();
+  onCommentsLoad();
 
-  commentsLoaderNode.addEventListener('click', renderNextComments);
+  commentsLoaderNode.addEventListener('click', onCommentsLoad);
 };
 
 export { clearComments, renderComments };

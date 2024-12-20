@@ -34,17 +34,17 @@ function applyFilter () {
     filteredPictures = photosArray;
   }
   if (currentFilter === FILTER.random) {
-    filteredPictures = photosArray.slice().sort(SORT_FUNC.random).slice(0, MAX_PICTURE_COUNT);
+    filteredPictures = photosArray.slice().sort(SORT_FUNC.getRandomPhotos).slice(0, MAX_PICTURE_COUNT);
   }
   if (currentFilter === FILTER.discussed) {
-    filteredPictures = photosArray.slice().sort(SORT_FUNC.discussed);
+    filteredPictures = photosArray.slice().sort(SORT_FUNC.getDiscussedPhotos);
   }
   debounceRender(filteredPictures);
 }
 
-const configFilter = () => {
+const configureFilter = () => {
   filterElement.classList.remove('img-filters--inactive');
   filterElement.addEventListener('click', onFilterChange);
 };
 
-export { configFilter };
+export { configureFilter };

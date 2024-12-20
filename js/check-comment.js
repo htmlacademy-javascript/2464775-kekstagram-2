@@ -2,7 +2,7 @@ import { MAX_COMMENT_LENGTH } from './const.js';
 
 let errorMessage = '';
 
-const errorComment = () => errorMessage;
+const showErrorComment = () => errorMessage;
 
 const validateComment = (value) => {
   errorMessage = '';
@@ -18,4 +18,4 @@ const validateComment = (value) => {
   }
 };
 
-export { errorComment, validateComment };
+export { showErrorComment, validateComment };

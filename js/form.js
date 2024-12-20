@@ -1,8 +1,13 @@
-import { error, validateHashtags } from './check-hashtag.js';
-import { errorComment, validateComment } from './check-comment.js';
+import { showErrorHashtag, validateHashtags } from './check-hashtag.js';
+import { showErrorComment, validateComment } from './check-comment.js';
 import { SCALE_STEP, FILE_TYPES } from './const.js';
 import { sendData } from './api.js';
 import { appendNotification } from './notification.js';
+
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...',
+};
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -22,11 +27,6 @@ const fileChooser = uploadForm.querySelector('.img-upload__input');
 const preview = img.querySelector('.img-upload__preview > img');
 const previewEffect = uploadForm.querySelectorAll('.effects__preview');
 let scale = 1;
-
-const SubmitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...',
-};
 
 const disabledButton = () => {
   formSubmitButton.disabled = true;
@@ -135,9 +135,9 @@ fileChooser.addEventListener('change', () => {
   }
 });
 
-pristine.addValidator(hashtagInput, validateHashtags, error, 2, false);
+pristine.addValidator(hashtagInput, validateHashtags, showErrorHashtag, 2, false);
 
-pristine.addValidator(commentInput, validateComment, errorComment, 2, false);
+pristine.addValidator(commentInput, validateComment, showErrorComment, 2, false);
 
 uploadFile.addEventListener('change', onPhotoSelect);
 

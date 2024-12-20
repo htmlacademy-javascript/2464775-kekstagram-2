@@ -2,7 +2,7 @@ import { MAX_HASHTAGS, MAX_SYMBOLS } from './const.js';
 
 let errorMessage = '';
 
-const error = () => errorMessage;
+const showErrorHashtag = () => errorMessage;
 
 const validateHashtags = (value) => {
   errorMessage = '';
@@ -55,4 +55,4 @@ const validateHashtags = (value) => {
   });
 };
 
-export { error, validateHashtags };
+export { showErrorHashtag, validateHashtags };
