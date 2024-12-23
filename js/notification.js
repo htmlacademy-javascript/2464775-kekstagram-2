@@ -12,18 +12,19 @@ const closeNotification = (evt) => {
     }
   };
 
-  if (evt.target === existElement || evt.target === closeButton || onEscKeydown(evt)) {
+  if (evt.target === existElement || evt.target === closeButton) {
     existElement.remove();
     body.removeEventListener('click', closeNotification);
-    body.removeEventListener('keydown', closeNotification);
+    body.removeEventListener('keydown', onEscKeydown);
   }
+
+  body.addEventListener('keydown', onEscKeydown);
 };
 
 const appendNotification = (template) => {
   const notificationNode = template.cloneNode(true);
   body.append(notificationNode);
   body.addEventListener('click', closeNotification);
-  body.addEventListener('keydown', closeNotification);
 };
 
 export { appendNotification };
