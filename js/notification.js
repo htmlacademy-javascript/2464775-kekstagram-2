@@ -24,7 +24,9 @@ function onEscPressed (evt) {
 }
 
 function onBodyClick (evt) {
-  if (evt.target.closest('button') || !evt.target.closest('.success') || !evt.target.closest('.error')) {
+  const existElement = document.querySelector('.error__inner') || document.querySelector('.success__inner');
+
+  if (evt.target.closest('button') || evt.target !== existElement) {
     closeNotification(evt);
   }
 }

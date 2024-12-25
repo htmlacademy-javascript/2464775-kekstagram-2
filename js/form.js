@@ -67,6 +67,8 @@ const reset = () => {
   preview.style.removeProperty('filter');
   effectLevel.classList.add('hidden');
   Array.from(document.querySelectorAll('.pristine-error')).forEach((el) => el.remove());
+  scale = 1;
+  preview.style.transform = `scale(${scale})`;
 };
 
 const onPhotoSelect = () => {
